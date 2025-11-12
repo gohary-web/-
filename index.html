@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD CODE</title>
+    <meta name="description" content="MD CODE">
+    <meta name="keywords" content="MD CODE">
+    <meta name="author" content="MD CODE">
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG9__sY3Jrth3fXmKoxnjIiDDUSQ-Nc7fs6Le-fFJLzzeqzfHyN9e4csJ_C6M3ADnbegYijT-2TOKdnw44QIgeoV867BgRmlhtcU5yqfonwdAZLUFieso9w4P2HehKQbuf2ngohpXzNC2bUZoUKR8iulqasM7GCM9z5JqYEFCJyCnqo1k6SYMVlGxM_I60/s1024/35366.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', 'Segoe UI', sans-serif;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #7e22ce;
+            --accent: #f59e0b;
+            --dark: #0f0f23;
+            --darker: #070711;
+            --card-bg: #1a1a2e;
+            --text: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --gradient: linear-gradient(135deg, #00d4ff 0%, #7e22ce 100%);
+            --glow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        body {
+            background: var(--darker);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(126, 34, 206, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: var(--gradient);
+            border-radius: 50%;
+            filter: blur(20px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 25px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            box-shadow: var(--glow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            object-fit: cover;
+        }
+
+        .logo-img:hover {
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tagline::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 50%;
+            height: 2px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--glow);
+        }
+
+        .app-details {
+            flex: 1;
+            text-align: right;
+        }
+
+        .app-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .app-meta {
+            display: flex;
+            gap: 15px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: var(--accent);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .file-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .progress-section {
+            margin-top: 25px;
+            display: none;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .feature i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .feature-text {
+            font-size: 0.85rem;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            background: var(--primary);
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            background: var(--secondary);
+        }
+
+        .floating-element:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+            background: var(--accent);
+        }
+
+        .floating-element:nth-child(4) {
+            top: 40%;
+            left: 90%;
+            animation-delay: 6s;
+            background: var(--primary);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(0) translateX(20px);
+            }
+            75% {
+                transform: translateY(20px) translateX(10px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <a href="https://drive.google.com/file/d/1UWtgN-lcBhAeAKCklS1PzRaxbIoleM83/view?usp=drivesdk" target="_blank">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiG9__sY3Jrth3fXmKoxnjIiDDUSQ-Nc7fs6Le-fFJLzzeqzfHyN9e4csJ_C6M3ADnbegYijT-2TOKdnw44QIgeoV867BgRmlhtcU5yqfonwdAZLUFieso9w4P2HehKQbuf2ngohpXzNC2bUZoUKR8iulqasM7GCM9z5JqYEFCJyCnqo1k6SYMVlGxM_I60/s1024/35366.jpg" alt="MD CODE Logo" class="logo-img">
+                </a>
+            </div>
+            <h1 class="logo-text">MD CODE</h1>
+            <p class="tagline">ابدأ رحلتك في البرمجة اليوم</p>
+        </div>
+
+        <div class="card">
+            <div class="app-header">
+                <div class="app-icon">
+                    <i class="fab fa-android"></i>
+                </div>
+                <div class="app-details">
+                    <div class="app-name">MD CODE للأندرويد</div>
+                    <div class="app-meta">
+                        <span class="version">الإصدار 2.1.0</span>
+                        <span class="rating">★★★★★</span>
+                        <span class="downloads">999+ تحميل</span>
+                    </div>
+                </div>
+            </div>
+
+            
+            <button class="download-btn" id="downloadButton">
+                <i class="fas fa-download"></i>
+                تحميل التطبيق
+            </button>
+
+            <div class="file-info">
+                <span>الحجم: 84.5 ميجابايت</span>
+                <span>متوافق مع Android 8.0+</span>
+            </div>
+
+            <div class="progress-section" id="progressSection">
+                <div class="progress-header">
+                    <span>جاري التحميل</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-stats">
+                    <span id="downloadedSize">0 MB</span>
+                    <span id="remainingTime">--:--</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-laptop-code"></i>
+                    <div class="feature-text">بيئة برمجة متكاملة</div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div class="feature-text">دروس تفاعلية</div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-project-diagram"></i>
+                    <div class="feature-text">مشاريع عملية</div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-code-branch"></i>
+                    <div class="feature-text">8 لغات برمجة</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadButton = document.getElementById('downloadButton');
+            const progressSection = document.getElementById('progressSection');
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            const downloadedSize = document.getElementById('downloadedSize');
+            const remainingTime = document.getElementById('remainingTime');
+            
+            // الإحصائيات الحقيقية
+            const stats = {
+                totalDownloads: 12847,
+                activeUsers: 8432,
+                avgRating: 4.8,
+                countries: 64
+            };
+            
+            // تحديث الإحصائيات مع تأثير العد
+            function updateStats() {
+                const totalDownloadsElem = document.getElementById('totalDownloads');
+                const activeUsersElem = document.getElementById('activeUsers');
+                const avgRatingElem = document.getElementById('avgRating');
+                const countriesElem = document.getElementById('countries');
+                
+                animateCount(totalDownloadsElem, stats.totalDownloads);
+                animateCount(activeUsersElem, stats.activeUsers);
+                animateCount(avgRatingElem, stats.avgRating, 1);
+                animateCount(countriesElem, stats.countries);
+            }
+            
+            function animateCount(element, target, decimals = 0) {
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = current.toFixed(decimals);
+                }, 16);
+            }
+            
+            let isDownloading = false;
+            let progress = 0;
+            
+            downloadButton.addEventListener('click', function() {
+                // فتح رابط التحميل
+                window.open('https://drive.google.com/file/d/1UWtgN-lcBhAeAKCklS1PzRaxbIoleM83/view?usp=drivesdk', '_blank');
+                
+                if (isDownloading) return;
+                
+                isDownloading = true;
+                progress = 0;
+                progressSection.style.display = 'block';
+                
+                // زيادة عداد التحميلات
+                stats.totalDownloads++;
+                document.getElementById('totalDownloads').textContent = stats.totalDownloads;
+                
+                // محاكاة التحميل
+                const interval = setInterval(() => {
+                    progress += Math.random() * 8;
+                    
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        isDownloading = false;
+                        
+                        setTimeout(() => {
+                            alert('🎉 تم تحميل التطبيق بنجاح!');
+                        }, 500);
+                    }
+                    
+                    // تحديث الواجهة
+                    progressFill.style.width = progress + '%';
+                    progressPercent.textContent = Math.round(progress) + '%';
+                    
+                    const downloadedMB = (84.5 * progress / 100).toFixed(1);
+                    downloadedSize.textContent = downloadedMB + ' MB';
+                    
+                    // حساب الوقت المتبقي
+                    const remainingSeconds = Math.round((100 - progress) * 1.5);
+                    const minutes = Math.floor(remainingSeconds / 60);
+                    const seconds = remainingSeconds % 60;
+                    remainingTime.textContent = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+                    
+                }, 200);
+            });
+            
+            // تشغيل تحديث الإحصائيات عند تحميل الصفحة
+            updateStats();
+        });
+    </script>
+</body>
+</html>
